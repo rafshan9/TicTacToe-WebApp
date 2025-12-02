@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tic Tac Toe</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        gap: 5px;
+
+        width: 310px;
+        margin: 20px auto;
+      }
+
+      .cell:hover {
+        background-color: #ddd;
+      }
+      .cell {
+        width: 100px;
+        height: 100px;
+        font-size: 3rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <!-- NEW: Game Status Board -->
+    {% if game.winner %}
+    <h2 style="color: green">WINNER: {{ game.winner }}!</h2>
+    {% else %}
+    <h3>Current Turn: {{ game.turn }}</h3>
+    {% endif %}
+    <div class="grid">
+      {% for i in range(9)%}
+      <form action="/press/{{ i }}" method="POST">
+        <button class="cell" {% if game.winner %}disabled{% endif %}>
+          {{ game.board[i] }}
+        </button>
+      </form>
+      {% endfor %}
+    </div>
+    <br />
+    <a href="/reset">Reset Game</a>
+  </body>
+</html>

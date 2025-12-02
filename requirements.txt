@@ -1,0 +1,2 @@
+pip freeze > requirements.txt
+3.  This will create a text file listing all your libraries. It should look something like `Flask==3.0.0` etc.
